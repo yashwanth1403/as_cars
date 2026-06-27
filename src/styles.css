@@ -1,0 +1,168 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-red: var(--red);
+  --color-red-dark: var(--red-dark);
+  --color-red-light: var(--red-light);
+  --color-red-muted: var(--red-muted);
+
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+  --color-dark-border: var(--dark-border);
+
+  --color-white: #ffffff;
+  --color-card-bg: var(--card-bg);
+
+  --color-text-heading: var(--text-heading);
+  --color-text-primary: var(--text-heading);
+  --color-text-body: var(--text-body);
+  --color-text-secondary: var(--text-body);
+  --color-text-muted: var(--text-muted);
+
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+
+  --color-card: var(--card-bg);
+  --color-card-foreground: var(--text-heading);
+  --color-popover: var(--card-bg);
+  --color-popover-foreground: var(--text-heading);
+  --color-primary: var(--red);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--surface);
+  --color-secondary-foreground: var(--text-heading);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--red-light);
+  --color-accent-foreground: var(--red-dark);
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.15);
+  --shadow-red-glow: 0 4px 18px rgba(228, 25, 25, 0.30);
+
+  --animate-fade-up: fade-up 0.55s ease-out both;
+  --animate-slide-left: slide-left 0.5s ease-out both;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+  --animate-red-pulse: red-pulse 2.4s ease-in-out infinite;
+
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-left {
+    0% { opacity: 0; transform: translateX(-24px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes red-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(228, 25, 25, 0.45); }
+    50% { box-shadow: 0 0 24px 4px rgba(228, 25, 25, 0.55); }
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --red: hsl(0 84% 50%);
+  --red-dark: hsl(0 84% 40%);
+  --red-light: hsl(0 86% 97%);
+  --red-muted: hsl(0 80% 80%);
+
+  --dark: hsl(0 0% 10%);
+  --dark-2: hsl(0 0% 15%);
+  --dark-border: hsl(0 0% 20%);
+
+  --surface: hsl(0 0% 97%);
+  --card-bg: hsl(0 0% 100%);
+  --border: hsl(0 0% 90%);
+
+  --text-heading: hsl(0 0% 10%);
+  --text-body: hsl(0 0% 33%);
+  --text-muted: hsl(0 0% 60%);
+
+  --success: hsl(142 72% 29%);
+  --success-bg: hsl(141 40% 92%);
+  --warning: hsl(42 95% 48%);
+
+  --background: #ffffff;
+  --foreground: var(--text-heading);
+  --input: var(--border);
+  --ring: var(--red);
+
+  --sidebar: var(--card-bg);
+  --sidebar-foreground: var(--text-heading);
+  --sidebar-primary: var(--red);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--surface);
+  --sidebar-accent-foreground: var(--text-heading);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--red);
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html {
+    --sb-thumb: hsl(0 84% 50%);
+    --sb-track: hsl(0 0% 97%);
+    --sel-bg: rgba(228, 25, 25, 0.15);
+    --sel-color: hsl(0 84% 50%);
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb) var(--sb-track);
+  }
+  body {
+    background-color: #ffffff;
+    color: hsl(0 0% 10%);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  ::selection { background: var(--sel-bg); color: var(--sel-color); }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--sb-track); }
+  ::-webkit-scrollbar-thumb { background: var(--sb-thumb); border-radius: 3px; }
+}
+
+/* Admin theme — premium black & gold */
+.admin-theme {
+  --color-primary: hsl(0 0% 8%);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: hsl(43 90% 50%);
+  --color-secondary-foreground: hsl(0 0% 8%);
+  --color-accent: hsl(0 0% 8%);
+  --color-accent-foreground: #ffffff;
+  --color-ring: hsl(0 0% 30%);
+  --color-muted: hsl(0 0% 97%);
+  --color-muted-foreground: hsl(0 0% 45%);
+  --color-border: hsl(0 0% 90%);
+  --color-card: hsl(0 0% 100%);
+  --sb-thumb: hsl(0 0% 75%);
+  --sb-track: hsl(0 0% 96%);
+  --sel-bg: rgba(0, 0, 0, 0.08);
+  --sel-color: hsl(0 0% 8%);
+}
