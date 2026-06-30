@@ -48,7 +48,10 @@ export const Route = createFileRoute("/admin/")({
     }
   },
   head: () => ({
-    meta: [{ title: "Dealer Console | Admin" }],
+    meta: [
+      { title: "Dealer Console | Admin" },
+      { name: "robots", content: "noindex,nofollow" },
+    ],
   }),
   component: AdminDashboard,
 });

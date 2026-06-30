@@ -22,9 +22,12 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Contact AS Cars | Used Car Dealer Hyderabad" },
       { property: "og:description", content: "Call, WhatsApp, or visit our Hitech City showroom." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: "https://ascars.in/contact" },
+      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { name: "twitter:title", content: "Contact AS Cars | Used Car Dealer Hyderabad" },
+      { name: "twitter:description", content: "Call, WhatsApp, or visit our Hitech City showroom." },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://ascars.in/contact" }],
     scripts: [
       {
         type: "application/ld+json",

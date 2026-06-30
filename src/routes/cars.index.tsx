@@ -51,9 +51,12 @@ export const Route = createFileRoute("/cars/")({
         content:
           "Browse certified pre-owned cars in Hyderabad. Filter by brand, price, and fuel type.",
       },
-      { property: "og:url", content: "/cars" },
+      { property: "og:url", content: "https://ascars.in/cars" },
+      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { name: "twitter:title", content: "Used Cars for Sale in Hyderabad — AS Cars" },
+      { name: "twitter:description", content: "Browse certified pre-owned cars in Hyderabad. Filter by brand, price, and fuel type." },
     ],
-    links: [{ rel: "canonical", href: "/cars" }],
+    links: [{ rel: "canonical", href: "https://ascars.in/cars" }],
   }),
   component: InventoryPage,
 });

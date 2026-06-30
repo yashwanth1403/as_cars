@@ -18,19 +18,86 @@ import { useQuery } from "@tanstack/react-query";
 import SiteLayout from "@/components/layout/SiteLayout";
 import CarCard from "@/components/cards/CarCard";
 import { formatKm, formatPrice } from "@/data/cars";
-import { fetchPublicCars } from "@/lib/supabase/cars";
+import { fetchPublicCars, fetchCarBySlugOrId } from "@/lib/supabase/cars";
 import { toPublicCar, toCarSlug, applyHotDealTags } from "@/lib/supabase/mappers";
 
 export const Route = createFileRoute("/cars/$slug")({
-  head: ({ params }) => {
-    const slug = params.slug;
+  loader: async ({ params }) => {
+    try {
+      const raw = await fetchCarBySlugOrId(params.slug);
+      if (!raw) return { car: null };
+      return { car: toPublicCar(raw) };
+    } catch {
+      return { car: null };
+    }
+  },
+  head: ({ loaderData }) => {
+    const car = loaderData?.car;
+    if (!car) {
+      return {
+        meta: [
+          { title: "Car Not Found | AS Cars" },
+          { name: "robots", content: "noindex,nofollow" },
+        ],
+      };
+    }
+    const slug = toCarSlug(car);
+    const displayPrice = car.offerPrice ?? car.price;
+    const priceStr =
+      displayPrice >= 100000
+        ? `₹${(displayPrice / 100000).toFixed(1)}L`
+        : `₹${displayPrice.toLocaleString("en-IN")}`;
+    const title = `${car.year} ${car.name} — ${priceStr} | AS Cars Hyderabad`;
+    const desc = `Buy verified ${car.year} ${car.name} in Hyderabad at ${priceStr}. ${car.km.toLocaleString("en-IN")} km, ${car.fuel}, ${car.transmission}, ${car.owners} owner. Book a test drive at AS Cars Hitech City.`;
+    const url = `https://ascars.in/cars/${slug}`;
+    const image =
+      car.images[0] && car.images[0] !== "/placeholder.svg"
+        ? car.images[0]
+        : "https://ascars.in/hero-family.png";
+
+    const vehicleJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Vehicle",
+      name: `${car.year} ${car.name}`,
+      brand: { "@type": "Brand", name: car.brand },
+      modelDate: String(car.year),
+      mileageFromOdometer: {
+        "@type": "QuantitativeValue",
+        value: car.km,
+        unitCode: "KMT",
+      },
+      fuelType: car.fuel,
+      vehicleTransmission: car.transmission,
+      image,
+      url,
+      offers: {
+        "@type": "Offer",
+        price: displayPrice,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "AutoDealer", name: "AS Cars", url: "https://ascars.in" },
+      },
+    };
+
     return {
       meta: [
-        { title: `Car Detail | AS Cars` },
-        { name: "description", content: "View car details at AS Cars Hyderabad." },
-        { property: "og:url", content: `/cars/${slug}` },
+        { title },
+        { name: "description", content: desc },
+        {
+          name: "keywords",
+          content: `${car.name} for sale Hyderabad, buy ${car.brand} Hyderabad, ${car.year} ${car.name} used car, pre-owned ${car.brand} Hitech City`,
+        },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "og:type", content: "product" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: desc },
+        { name: "twitter:image", content: image },
       ],
-      links: [{ rel: "canonical", href: `/cars/${slug}` }],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify(vehicleJsonLd) }],
     };
   },
   component: CarDetail,

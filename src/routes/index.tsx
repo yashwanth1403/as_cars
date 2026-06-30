@@ -13,6 +13,7 @@ const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "AutoDealer",
   name: "AS Cars",
+  url: "https://ascars.in",
   telephone: "+919392583393",
   address: {
     "@type": "PostalAddress",
@@ -22,10 +23,24 @@ const ORG_JSONLD = {
     postalCode: "500085",
     addressCountry: "IN",
   },
-  openingHours: "Mo-Sa 09:00-19:00",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "17.4469",
+    longitude: "78.3804",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
   priceRange: "₹₹",
+  image: "https://ascars.in/hero-family.png",
   description:
     "Hyderabad's most trusted pre-owned car dealership offering verified cars with easy finance options.",
+  sameAs: ["https://wa.me/919392583393"],
 };
 
 export const Route = createFileRoute("/")({
@@ -49,9 +64,12 @@ export const Route = createFileRoute("/")({
           "Hyderabad's most trusted pre-owned car dealership in Hitech City. 100+ verified cars, easy EMI, doorstep delivery.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://ascars.in/" },
+      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { name: "twitter:title", content: "AS Cars | Buy & Sell Certified Pre-Owned Cars in Hyderabad" },
+      { name: "twitter:description", content: "Hyderabad's most trusted pre-owned car dealership in Hitech City. 100+ verified cars, easy EMI, doorstep delivery." },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://ascars.in/" }],
     scripts: [
       {
         type: "application/ld+json",
