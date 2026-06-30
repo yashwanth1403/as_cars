@@ -49,11 +49,11 @@ export const Route = createFileRoute("/cars/$slug")({
         : `₹${displayPrice.toLocaleString("en-IN")}`;
     const title = `${car.year} ${car.name} — ${priceStr} | AS Cars Hyderabad`;
     const desc = `Buy verified ${car.year} ${car.name} in Hyderabad at ${priceStr}. ${car.km.toLocaleString("en-IN")} km, ${car.fuel}, ${car.transmission}, ${car.owners} owner. Book a test drive at AS Cars Hitech City.`;
-    const url = `https://ascars.in/cars/${slug}`;
+    const url = `https://www.ascars.in/cars/${slug}`;
     const image =
       car.images[0] && car.images[0] !== "/placeholder.svg"
         ? car.images[0]
-        : "https://ascars.in/hero-family.png";
+        : "https://www.ascars.in/hero-family.png";
 
     const vehicleJsonLd = {
       "@context": "https://schema.org",
@@ -75,7 +75,7 @@ export const Route = createFileRoute("/cars/$slug")({
         price: displayPrice,
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
-        seller: { "@type": "AutoDealer", name: "AS Cars", url: "https://ascars.in" },
+        seller: { "@type": "AutoDealer", name: "AS Cars", url: "https://www.ascars.in" },
       },
     };
 
@@ -169,7 +169,7 @@ function CarDetail() {
   }
 
   const waMessage = encodeURIComponent(
-    `Hi! I'm interested in a test drive for ${car.name} ${car.year}. Car: ${typeof window !== "undefined" ? window.location.href : `https://ascars.in/cars/${toCarSlug(car)}`}`,
+    `Hi! I'm interested in a test drive for ${car.name} ${car.year}. Car: ${typeof window !== "undefined" ? window.location.href : `https://www.ascars.in/cars/${toCarSlug(car)}`}`,
   );
   const waLink = `https://wa.me/${PHONE}?text=${waMessage}`;
 

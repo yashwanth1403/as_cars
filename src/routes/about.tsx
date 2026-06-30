@@ -22,12 +22,12 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:title", content: "About AS Cars | Trusted Used Car Dealer in Hyderabad" },
       { property: "og:description", content: "Hyderabad's trusted used car dealership in Hitech City." },
-      { property: "og:url", content: "https://ascars.in/about" },
-      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { property: "og:url", content: "https://www.ascars.in/about" },
+      { property: "og:image", content: "https://www.ascars.in/hero-family.png" },
       { name: "twitter:title", content: "About AS Cars | Trusted Used Car Dealer in Hyderabad" },
       { name: "twitter:description", content: "Hyderabad's trusted used car dealership in Hitech City." },
     ],
-    links: [{ rel: "canonical", href: "https://ascars.in/about" }],
+    links: [{ rel: "canonical", href: "https://www.ascars.in/about" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/about")({
           "@context": "https://schema.org",
           "@type": "AutoDealer",
           name: "AS Cars",
-          url: "https://ascars.in",
+          url: "https://www.ascars.in",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Gopal Nagar, Hafeezpet Rd",

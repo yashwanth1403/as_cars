@@ -13,7 +13,7 @@ const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "AutoDealer",
   name: "AS Cars",
-  url: "https://ascars.in",
+  url: "https://www.ascars.in",
   telephone: "+919392583393",
   address: {
     "@type": "PostalAddress",
@@ -37,7 +37,7 @@ const ORG_JSONLD = {
     },
   ],
   priceRange: "₹₹",
-  image: "https://ascars.in/hero-family.png",
+  image: "https://www.ascars.in/hero-family.png",
   description:
     "Hyderabad's most trusted pre-owned car dealership offering verified cars with easy finance options.",
   sameAs: ["https://wa.me/919392583393"],
@@ -64,12 +64,12 @@ export const Route = createFileRoute("/")({
           "Hyderabad's most trusted pre-owned car dealership in Hitech City. 100+ verified cars, easy EMI, doorstep delivery.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ascars.in/" },
-      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { property: "og:url", content: "https://www.ascars.in/" },
+      { property: "og:image", content: "https://www.ascars.in/hero-family.png" },
       { name: "twitter:title", content: "AS Cars | Buy & Sell Certified Pre-Owned Cars in Hyderabad" },
       { name: "twitter:description", content: "Hyderabad's most trusted pre-owned car dealership in Hitech City. 100+ verified cars, easy EMI, doorstep delivery." },
     ],
-    links: [{ rel: "canonical", href: "https://ascars.in/" }],
+    links: [{ rel: "canonical", href: "https://www.ascars.in/" }],
     scripts: [
       {
         type: "application/ld+json",

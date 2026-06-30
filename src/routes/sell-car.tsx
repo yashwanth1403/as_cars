@@ -26,12 +26,12 @@ export const Route = createFileRoute("/sell-car")({
         content:
           "Free instant valuation. Zero paperwork. Same-day payment. Trusted by 500+ Hyderabad car owners.",
       },
-      { property: "og:url", content: "https://ascars.in/sell-car" },
-      { property: "og:image", content: "https://ascars.in/hero-family.png" },
+      { property: "og:url", content: "https://www.ascars.in/sell-car" },
+      { property: "og:image", content: "https://www.ascars.in/hero-family.png" },
       { name: "twitter:title", content: "Sell Your Used Car in Hyderabad — AS Cars" },
       { name: "twitter:description", content: "Free instant valuation. Zero paperwork. Same-day payment. Trusted by 500+ Hyderabad car owners." },
     ],
-    links: [{ rel: "canonical", href: "https://ascars.in/sell-car" }],
+    links: [{ rel: "canonical", href: "https://www.ascars.in/sell-car" }],
     scripts: [
       {
         type: "application/ld+json",
