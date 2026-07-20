@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SellCarRouteImport } from './routes/sell-car'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -21,6 +22,11 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 const SellCarRoute = SellCarRouteImport.update({
   id: '/sell-car',
   path: '/sell-car',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sell-car': typeof SellCarRoute
   '/admin/login': typeof AdminLoginRoute
   '/cars/$slug': typeof CarsSlugRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sell-car': typeof SellCarRoute
   '/admin/login': typeof AdminLoginRoute
   '/cars/$slug': typeof CarsSlugRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/sell-car': typeof SellCarRoute
   '/admin/login': typeof AdminLoginRoute
   '/cars/$slug': typeof CarsSlugRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/privacy-policy'
     | '/sell-car'
     | '/admin/login'
     | '/cars/$slug'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/privacy-policy'
     | '/sell-car'
     | '/admin/login'
     | '/cars/$slug'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/privacy-policy'
     | '/sell-car'
     | '/admin/login'
     | '/cars/$slug'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SellCarRoute: typeof SellCarRoute
   AdminLoginRoute: typeof AdminLoginRoute
   CarsSlugRoute: typeof CarsSlugRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/sell-car'
       fullPath: '/sell-car'
       preLoaderRoute: typeof SellCarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   SellCarRoute: SellCarRoute,
   AdminLoginRoute: AdminLoginRoute,
   CarsSlugRoute: CarsSlugRoute,

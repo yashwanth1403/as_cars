@@ -149,9 +149,13 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p className="text-white/30 text-xs">© 2025 AS Cars. All rights reserved.</p>
           <div className="flex gap-3 text-white/30 text-xs">
-            <a href="#" className="hover:text-white/60 transition-colors">Privacy Policy</a>
+            <Link to="/privacy-policy" className="hover:text-white/60 transition-colors">
+              Privacy Policy
+            </Link>
             <span>·</span>
-            <a href="#" className="hover:text-white/60 transition-colors">Terms of Use</a>
+            <a href="#" className="hover:text-white/60 transition-colors">
+              Terms of Use
+            </a>
           </div>
         </div>
       </div>

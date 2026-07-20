@@ -1,0 +1,35 @@
+{
+  "name": "search_cars",
+  "description": "Search AS Cars inventory by car name. Call this whenever the user asks about any car. Never answer car availability or price without calling this first.",
+  "pre_call_message": "ఒక్క నిమిషం, చెక్ చేస్తున్నాను",
+  "parameters": {
+    "type": "object",
+    "required": ["name"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "The car model name in ENGLISH only. Even if the user speaks Telugu or Hindi, always convert the car name to English before sending. Format: ilike.*<English model name>*. Examples: user says 'హోండా సిటీ' → ilike.*City*, user says 'స్విఫ్ట్' → ilike.*Swift*, user says 'క్రెటా' → ilike.*Creta*, user says 'Audi Q7' → ilike.*Q7*. Never send Telugu or Hindi script in this field."
+      }
+    }
+  },
+  "key": "custom_task",
+  "value": {
+    "method": "GET",
+    "param": {
+      "select": "name,brand,year,km,fuel,transmission,price,status,offers:Offer(title,offerprice,isactive)",
+      "status": "eq.available",
+      "ispublished": "eq.true",
+      "order": "createdat.desc",
+      "name": "%(name)s"
+    },
+    "url": "https://bwfgewulxivjmvowjudn.supabase.co/rest/v1/Car",
+    "api_token": null,
+    "headers": {
+      "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3Zmdld3VseGl2am12b3dqdWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NDIxOTUsImV4cCI6MjA5NTUxODE5NX0.8EK4H_0uvSgvPhG83HjNCcxlrJS7Kqlbu0f6BnHde0M",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3Zmdld3VseGl2am12b3dqdWRuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5NDIxOTUsImV4cCI6MjA5NTUxODE5NX0.8EK4H_0uvSgvPhG83HjNCcxlrJS7Kqlbu0f6BnHde0M",
+      "Content-Type": "application/json"
+    },
+    "pre_call_webhook_url": null,
+    "pre_call_webhook_param": null
+  }
+}
