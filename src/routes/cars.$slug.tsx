@@ -218,7 +218,14 @@ function CarDetail() {
           <div>
             {/* Gallery */}
             <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-surface">
-              <img src={car.images[activeImage]} alt={car.name} className="w-full h-full object-cover" />
+              <img
+                src={car.images[activeImage]}
+                alt={car.name}
+                className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
               {car.tag && (
                 <span className="absolute top-4 left-4 bg-red text-white text-xs font-display font-bold tracking-wider px-3 py-1.5 rounded-lg uppercase">
                   {car.tag}
@@ -254,7 +261,15 @@ function CarDetail() {
                       i === activeImage ? "border-red" : "border-transparent hover:border-red/50"
                     }`}
                   >
-                    <img src={src} alt="" className="object-cover w-full h-full" />
+                    <img
+                      src={src}
+                      alt=""
+                      className="object-cover w-full h-full"
+                      loading="lazy"
+                      decoding="async"
+                      width={80}
+                      height={56}
+                    />
                   </button>
                 ))}
               </div>
